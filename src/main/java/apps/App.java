@@ -3,17 +3,23 @@ package apps;
 import edu.escuelaing.arep.app.anotations.Web;
 
 public class App {
-    int id;
+    public static int id;
+
+
     public App(){
+
         id = 0;
     }
 
-    public static void escribir(){
-        System.err.println("Test");
+    @Web("/Saludo")
+    public static String escribir(){
+
+        return "Hola Mundo!";
     }
 
-    @Web("/HolaComoEstas")
+    @Web("/Prueba")
     public static String test(){
+
         return "Test";
     }
 }
