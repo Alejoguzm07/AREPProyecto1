@@ -4,10 +4,7 @@ import edu.escuelaing.arep.app.anotations.Web;
 import edu.escuelaing.arep.app.interfaces.Handler;
 
 import javax.sound.midi.SysexMessage;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.PrintWriter;
+import java.io.*;
 import java.lang.reflect.Method;
 import java.net.InetAddress;
 import java.net.ServerSocket;
@@ -28,7 +25,13 @@ public class AppServer {
     }
 
     public void initialize() throws ClassNotFoundException {
-        load("apps.App");
+        File f = new File(System.getProperty("user.dir") + "/src/main/java/apps");
+        File[] ficheros = f.listFiles();
+        for (int x=0;x<ficheros.length;x++){
+            String name = ficheros[x].getName();
+            load("apps." + name.substring(0,name.indexOf(".")));
+            System.out.println("Class " + name.substring(0,name.indexOf(".")) + " was loaded.");
+        }
         listen();
     }
 
