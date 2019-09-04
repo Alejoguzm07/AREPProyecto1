@@ -20,7 +20,6 @@ public class AppServer {
 
 
     public AppServer() {
-
         listURLHandler = new HashMap<String, Handler>();
     }
 
@@ -46,9 +45,9 @@ public class AppServer {
             }
             try {
                 server = new ServerSocket(port);
-                System.err.println("Port " + port + " is being listened...");
+                System.out.println("Port " + port + " is being listened...");
             } catch (IOException e) {
-                System.err.println("Port " + port + " could not be listened...");
+                System.out.println("Port " + port + " could not be listened...");
                 System.exit(1);
             }
             client = null;
@@ -56,7 +55,7 @@ public class AppServer {
                 System.out.println("Recieving...");
                 client = server.accept();
             } catch (IOException e) {
-                System.err.println("Accept failed.");
+                System.out.println("Accept failed.");
                 System.exit(1);
             }
             try {
@@ -65,17 +64,24 @@ public class AppServer {
                 BufferedReader in = new BufferedReader(new InputStreamReader(client.getInputStream()));
                 String inputLine;
                 while ((inputLine = in.readLine()) != null) {
-                    System.err.println("Request: "+inputLine +" recieved");
+                    System.out.println("Request: "+ inputLine +" recieved");
                     if(inputLine.contains("GET")) {
                         String address = inputLine.split(" ")[1];
                         if(address.contains("/apps/")) {
                             out.println("HTTP/1.1 200 OK\r");
                             out.println("Content-Type: text/html\r");
                             out.println("\r\n");
-                            System.err.println(address);
-                            out.println(listURLHandler.get(address).process());
-                        }else{
-                            System.out.println("fvdfdsrfb");
+                            System.out.println(address);
+                            String[] parameters = address.split("\\?");
+                            if(parameters.length == 1){
+                            	out.println(listURLHandler.get(address).process(null));
+                            }else {                            	
+                            	address = address.substring(0,address.indexOf("?"));
+                            	String[] arguments = parameters[1].split(",");                            	
+                            	out.println(listURLHandler.get(address).process(arguments));
+                            }                            
+                        }if(address.contains("/web/")){
+                            System.out.println("fldsmdfr");
                         }
                     }
                     if (!in.ready()) {

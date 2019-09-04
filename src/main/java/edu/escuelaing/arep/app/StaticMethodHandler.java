@@ -12,11 +12,11 @@ public class StaticMethodHandler implements Handler {
         m = met;
     }
 
-    @Override
-    public Object process() {
+    public Object process(Object[] args) {
+    	System.err.println(args == null);
         Object o = null;
         try {
-            o = m.invoke(null, null);
+            o = m.invoke(null, args);
         } catch (IllegalAccessException e) {
             e.printStackTrace();
         } catch (InvocationTargetException e) {
