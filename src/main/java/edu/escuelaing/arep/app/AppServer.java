@@ -3,7 +3,10 @@ package edu.escuelaing.arep.app;
 import edu.escuelaing.arep.app.anotations.Web;
 import edu.escuelaing.arep.app.interfaces.Handler;
 
+import javax.imageio.ImageIO;
 import javax.sound.midi.SysexMessage;
+
+import java.awt.image.BufferedImage;
 import java.io.*;
 import java.lang.reflect.Method;
 import java.net.InetAddress;
@@ -80,8 +83,40 @@ public class AppServer {
                             	String[] arguments = parameters[1].split(",");                            	
                             	out.println(listURLHandler.get(address).process(arguments));
                             }                            
-                        }if(address.contains("/web/")){
-                            System.out.println("fldsmdfr");
+                        }if(address.contains("/static/")){                        	
+                            System.out.println(address);
+                            String[] parts = address.split("/");
+                            String resource = parts[parts.length - 1];
+                            if(resource.contains(".html")) {
+                            	out.println("HTTP/1.1 200 OK\r");
+                                out.println("Content-Type: text/html\r");
+                                out.println("\r\n");
+                                try {
+                                    BufferedReader resourceReader = new BufferedReader(
+                                    new InputStreamReader(
+                                    new FileInputStream(System.getProperty("user.dir") + "/static/" + resource), "UTF8"));
+                                    while (resourceReader.ready()) {
+                                        out.println(resourceReader.readLine());
+                        			}
+                                    resourceReader.close();
+                                }catch (Exception e) {
+                                    System.err.println(e);
+                                }
+                            }else if(resource.contains(".gif") || resource.contains(".jpeg") || resource.contains(".jpg") || resource.contains(".png")){
+                            	String format = resource.substring(resource.indexOf(".") + 1);
+                            	BufferedImage img = ImageIO.read(new File(System.getProperty("user.dir") + "/static/" + resource));
+                            	ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+                            	ImageIO.write(img, format, bytes);
+                            	byte [] bytesList = bytes.toByteArray();
+                            	DataOutputStream imgOut = new DataOutputStream(client.getOutputStream());
+                            	imgOut.writeBytes("HTTP/1.1 200 OK \r\n");
+                            	imgOut.writeBytes("Content-Type: image/" + format + "\r\n");
+                            	imgOut.writeBytes("Content-Length: " + bytesList.length);
+                            	imgOut.writeBytes("\r\n\r\n");
+                    			imgOut.write(bytesList);
+                    			imgOut.close();
+                    			out.println(imgOut.toString());
+                            }
                         }
                     }
                     if (!in.ready()) {
