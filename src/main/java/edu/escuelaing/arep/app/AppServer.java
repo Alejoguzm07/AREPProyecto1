@@ -71,9 +71,8 @@ public class AppServer {
                     if(inputLine.contains("GET")) {
                         String address = inputLine.split(" ")[1];
                         if(address.contains("/apps/")) {
-                            out.println("HTTP/1.1 200 OK\r");
-                            out.println("Content-Type: text/html\r");
-                            out.println("\r\n");
+                            out.println("HTTP/1.1 200 OK");
+                            out.println("Content-Type: text/html");
                             System.out.println(address);
                             String[] parameters = address.split("\\?");
                             if(parameters.length == 1){
@@ -88,9 +87,8 @@ public class AppServer {
                             String[] parts = address.split("/");
                             String resource = parts[parts.length - 1];
                             if(resource.contains(".html")) {
-                            	out.println("HTTP/1.1 200 OK\r");
-                                out.println("Content-Type: text/html\r");
-                                out.println("\r\n");
+                            	out.println("HTTP/1.1 200 OK");
+                                out.println("Content-Type: text/html");
                                 try {
                                     BufferedReader resourceReader = new BufferedReader(
                                     new InputStreamReader(
@@ -100,12 +98,10 @@ public class AppServer {
                         			}
                                     resourceReader.close();
                                 }catch (Exception e) {
-                                	out.println("HTTP/1.1 200 OK\r");
-                                    out.println("Content-Type: text/html\r");
-                                    out.println("\r\n");
+                                	out.println("HTTP/1.1 200 OK");
+                                    out.println("Content-Type: text/html");
                                     String s = "HTTP/1.1 200 OK\r" +
                                             "Content-Type: text/html\r" +
-                                            "\r\n" +
                                             "<html><body><h1>OOOPS!</h1></body> </html>";
                                     out.println(s);
                                 }

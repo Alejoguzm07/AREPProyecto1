@@ -18,9 +18,8 @@ public class StaticMethodHandler implements Handler {
         try {
             o = m.invoke(null, args);
         } catch (Exception e) {
-        	o = "HTTP/1.1 200 OK\r" +
-            "Content-Type: text/html\r" +
-            "\r\n" +
+        	o = "HTTP/1.1 200 OK" +
+            "Content-Type: text/html" +
             "<html><body><h1>OOOPS!</h1></body> </html>";
             return o;
         }
