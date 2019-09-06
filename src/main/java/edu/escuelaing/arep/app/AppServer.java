@@ -100,7 +100,14 @@ public class AppServer {
                         			}
                                     resourceReader.close();
                                 }catch (Exception e) {
-                                    System.err.println(e);
+                                	out.println("HTTP/1.1 200 OK\r");
+                                    out.println("Content-Type: text/html\r");
+                                    out.println("\r\n");
+                                    String s = "HTTP/1.1 200 OK\r" +
+                                            "Content-Type: text/html\r" +
+                                            "\r\n" +
+                                            "<html><body><h1>OOOPS!</h1></body> </html>";
+                                    out.println(s);
                                 }
                             }else if(resource.contains(".gif") || resource.contains(".jpeg") || resource.contains(".jpg") || resource.contains(".png")){
                             	String format = resource.substring(resource.indexOf(".") + 1);

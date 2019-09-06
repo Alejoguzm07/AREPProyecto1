@@ -17,10 +17,12 @@ public class StaticMethodHandler implements Handler {
         Object o = null;
         try {
             o = m.invoke(null, args);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
+        } catch (Exception e) {
+        	o = "HTTP/1.1 200 OK\r" +
+            "Content-Type: text/html\r" +
+            "\r\n" +
+            "<html><body><h1>OOOPS!</h1></body> </html>";
+            return o;
         }
         return o;
     }
