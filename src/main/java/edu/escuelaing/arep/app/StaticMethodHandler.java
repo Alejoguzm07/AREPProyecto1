@@ -18,7 +18,7 @@ public class StaticMethodHandler implements Handler {
         		+ "<html>"
         		+ "<body>"
         		+ "<h1>OOOOPS!!!</h1>"
-        		+ " <button type='button' href='https://evening-lake-77451.herokuapp.com/static/index.html'>volver al inicio</button>"
+        		+ " <a href='"+ System.getProperty("user.dir") + "/static/index.html'>volver al inicio</a>"
         		+ "</body>"
         		+ "</html>";
         try {

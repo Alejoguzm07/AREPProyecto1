@@ -85,11 +85,11 @@ public class AppServer {
                                 	out.println(listURLHandler.get(address).process(arguments));
                                 }
                             }catch (Exception e) {
-                        		String volver = "<!DOCTYPE html>"
+                            	String volver = "<!DOCTYPE html>"
                                 		+ "<html>"
                                 		+ "<body>"
                                 		+ "<h1>OOOOPS!!!</h1>"
-                                		+ " <button type='button' href='https://evening-lake-77451.herokuapp.com/static/index.html'>volver al inicio</button>"
+                                		+ " <a href='"+ System.getProperty("user.dir") + "/static/index.html'>volver al inicio</a>"
                                 		+ "</body>"
                                 		+ "</html>";                                    
                                 out.println(volver);
@@ -112,11 +112,11 @@ public class AppServer {
                         			}
                                     resourceReader.close();
                                 }catch (Exception e) {
-                                    String volver = "<!DOCTYPE html>"
+                                	String volver = "<!DOCTYPE html>"
                                     		+ "<html>"
                                     		+ "<body>"
                                     		+ "<h1>OOOOPS!!!</h1>"
-                                    		+ " <button type='button' href='https://evening-lake-77451.herokuapp.com/static/index.html'>volver al inicio</button>"
+                                    		+ " <a href='"+ System.getProperty("user.dir") + "/static/index.html'>volver al inicio</a>"
                                     		+ "</body>"
                                     		+ "</html>";                                    
                                     out.println(volver);
@@ -140,11 +140,11 @@ public class AppServer {
                             		out.println("HTTP/1.1 200 OK\r");
                                     out.println("Content-Type: text/html\r");
                                     out.println("\r\n");
-                            		String volver = "<!DOCTYPE html>"
+                                    String volver = "<!DOCTYPE html>"
                                     		+ "<html>"
                                     		+ "<body>"
                                     		+ "<h1>OOOOPS!!!</h1>"
-                                    		+ " <button type='button' href='https://evening-lake-77451.herokuapp.com/static/index.html'>volver al inicio</button>"
+                                    		+ " <a href='"+ System.getProperty("user.dir") + "/static/index.html'>volver al inicio</a>"
                                     		+ "</body>"
                                     		+ "</html>";                                    
                                     out.println(volver);
@@ -154,11 +154,11 @@ public class AppServer {
                             	out.println("HTTP/1.1 200 OK\r");
                                 out.println("Content-Type: text/html\r");
                                 out.println("\r\n");
-                            	String volver = "<!DOCTYPE html>"
+                                String volver = "<!DOCTYPE html>"
                                 		+ "<html>"
                                 		+ "<body>"
                                 		+ "<h1>OOOOPS!!!</h1>"
-                                		+ " <button type='button' href='https://evening-lake-77451.herokuapp.com/static/index.html'>volver al inicio</button>"
+                                		+ " <a href='"+ System.getProperty("user.dir") + "/static/index.html'>volver al inicio</a>"
                                 		+ "</body>"
                                 		+ "</html>";                                    
                                 out.println(volver);
