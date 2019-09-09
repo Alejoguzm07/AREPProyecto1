@@ -18,7 +18,7 @@
 http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
 # Ignora todos los archivos en el directorio target en los
-proyectos creados con maven
+#proyectos creados con maven
 target/
 # Ignora archivo .DS_Store en Mac
 .DS_Store
