@@ -9,14 +9,25 @@
 </head>
  
 <body>
+    <script>
+        console.log("hola");
+    </script>
     <header>
-       <h1>Cuadrado de un numero</h1>
-       <p>Ingrese el valor</p>
-       
+       <h1>Calculadora Web</h1>             
     </header>
-    <section>
+    <h2>Seleccione una operacion</h2>
+    <select id="operacion">
+        <option value="1">Suma</option> 
+        <option value="2">Resta</option> 
+        <option value="3">Multiplicacion</option>
+        <option value="4">Division</option> 
+        <option value="5">Cuadrado</option> 
+        <option value="6">Raiz</option> 
+    </select>
+    <h2>Ingrese el/los numero/s</h2>
+    <form>
         <input id="numero" type="number"></br>
         <input type="button" value="Calcular">
-    </section>
+    </form>
 </body>
 </html>
