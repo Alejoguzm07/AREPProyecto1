@@ -75,14 +75,26 @@ public class AppServer {
                             out.println("Content-Type: text/html\r");
                             out.println("\r\n");
                             System.out.println(address);
-                            String[] parameters = address.split("\\?");
-                            if(parameters.length == 1){
-                            	out.println(listURLHandler.get(address).process(null));
-                            }else {                            	
-                            	address = address.substring(0,address.indexOf("?"));
-                            	String[] arguments = parameters[1].split(",");                            	
-                            	out.println(listURLHandler.get(address).process(arguments));
-                            }                            
+                            try {
+                            	String[] parameters = address.split("\\?");
+                                if(parameters.length == 1){
+                                	out.println(listURLHandler.get(address).process(null));
+                                }else {                            	
+                                	address = address.substring(0,address.indexOf("?"));
+                                	String[] arguments = parameters[1].split(",");                            	
+                                	out.println(listURLHandler.get(address).process(arguments));
+                                }
+                            }catch (Exception e) {
+                        		String volver = "<!DOCTYPE html>"
+                                		+ "<html>"
+                                		+ "<body>"
+                                		+ "<h1>OOOOPS!!!</h1>"
+                                		+ " <button type='button' href='https://evening-lake-77451.herokuapp.com/static/index.html'>volver al inicio</button>"
+                                		+ "</body>"
+                                		+ "</html>";                                    
+                                out.println(volver);
+							}
+                                                        
                         }if(address.contains("/static/")){                        	
                             System.out.println(address);
                             String[] parts = address.split("/");
@@ -100,22 +112,56 @@ public class AppServer {
                         			}
                                     resourceReader.close();
                                 }catch (Exception e) {
-                                    System.err.println(e);
+                                    String volver = "<!DOCTYPE html>"
+                                    		+ "<html>"
+                                    		+ "<body>"
+                                    		+ "<h1>OOOOPS!!!</h1>"
+                                    		+ " <button type='button' href='https://evening-lake-77451.herokuapp.com/static/index.html'>volver al inicio</button>"
+                                    		+ "</body>"
+                                    		+ "</html>";                                    
+                                    out.println(volver);
                                 }
                             }else if(resource.contains(".gif") || resource.contains(".jpeg") || resource.contains(".jpg") || resource.contains(".png")){
                             	String format = resource.substring(resource.indexOf(".") + 1);
-                            	BufferedImage img = ImageIO.read(new File(System.getProperty("user.dir") + "/static/" + resource));
-                            	ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-                            	ImageIO.write(img, format, bytes);
-                            	byte [] bytesList = bytes.toByteArray();
-                            	DataOutputStream imgOut = new DataOutputStream(client.getOutputStream());
-                            	imgOut.writeBytes("HTTP/1.1 200 OK \r\n");
-                            	imgOut.writeBytes("Content-Type: image/" + format + "\r\n");
-                            	imgOut.writeBytes("Content-Length: " + bytesList.length);
-                            	imgOut.writeBytes("\r\n\r\n");
-                    			imgOut.write(bytesList);
-                    			imgOut.close();
-                    			out.println(imgOut.toString());
+                            	try {
+	                            	BufferedImage img = ImageIO.read(new File(System.getProperty("user.dir") + "/static/" + resource));
+	                            	ByteArrayOutputStream bytes = new ByteArrayOutputStream();
+	                            	ImageIO.write(img, format, bytes);
+	                            	byte [] bytesList = bytes.toByteArray();
+	                            	DataOutputStream imgOut = new DataOutputStream(client.getOutputStream());
+	                            	imgOut.writeBytes("HTTP/1.1 200 OK \r\n");
+	                            	imgOut.writeBytes("Content-Type: image/" + format + "\r\n");
+	                            	imgOut.writeBytes("Content-Length: " + bytesList.length);
+	                            	imgOut.writeBytes("\r\n\r\n");
+	                    			imgOut.write(bytesList);
+	                    			imgOut.close();
+	                    			out.println(imgOut.toString());
+                            	}catch (Exception e) {
+                            		out.println("HTTP/1.1 200 OK\r");
+                                    out.println("Content-Type: text/html\r");
+                                    out.println("\r\n");
+                            		String volver = "<!DOCTYPE html>"
+                                    		+ "<html>"
+                                    		+ "<body>"
+                                    		+ "<h1>OOOOPS!!!</h1>"
+                                    		+ " <button type='button' href='https://evening-lake-77451.herokuapp.com/static/index.html'>volver al inicio</button>"
+                                    		+ "</body>"
+                                    		+ "</html>";                                    
+                                    out.println(volver);
+								}
+                    			
+                            }else {
+                            	out.println("HTTP/1.1 200 OK\r");
+                                out.println("Content-Type: text/html\r");
+                                out.println("\r\n");
+                            	String volver = "<!DOCTYPE html>"
+                                		+ "<html>"
+                                		+ "<body>"
+                                		+ "<h1>OOOOPS!!!</h1>"
+                                		+ " <button type='button' href='https://evening-lake-77451.herokuapp.com/static/index.html'>volver al inicio</button>"
+                                		+ "</body>"
+                                		+ "</html>";                                    
+                                out.println(volver);
                             }
                         }
                     }
