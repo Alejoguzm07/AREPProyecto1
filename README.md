@@ -1,7 +1,7 @@
 # Proyecto
 ## Estudiante: José Alejandro Naranjo Guzmán
 ## Profesor: Luis Daniel Benavides Navarro
-### Despliegue: [App Heroku](https://evening-lake-77451.herokuapp.com/static/index.html)
+### Despliegue: [App Heroku](https://fast-bastion-75535.herokuapp.com/static/index.html)
 
 Para este proyecto se desarrolló un framework para soportar y desplegar aplicaciones web. Por medio de meta data en java, se realizan invocaciones a métodos de las clases, que también están plasmadas en el lenguaje con la abstracción de clase, es decir, con una clase que representa clases. Con el uso de anotaciones y caracteres específicos se creó un estándar para que los usuarios accedieran desde la web a las funcionalidades del servidor, por ejemplo, para enviar parámetros via URL.
 ### Diagrama de arquitectura
