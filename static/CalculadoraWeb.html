@@ -11,6 +11,10 @@
 <body>
     <script>
         var inputs = function () {
+            var ins = document.getElementsByClassName("input");
+            ins.forEach(element => {
+                document.body.removeChild(element);
+            });
             var op = document.getElementById("operacion").value;
             var n1 = document.createElement("input");
             n1.setAttribute("type", "number");
@@ -27,6 +31,10 @@
         };
         
         var envio = function (){
+            var ins = document.getElementsByClassName("input");
+            ins.forEach(element => {
+                document.body.removeChild(element);
+            });
             var op = document.getElementById("operacion").value;
             if(op == 1){
                 var mat = "Suma";
