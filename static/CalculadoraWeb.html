@@ -11,10 +11,7 @@
 <body>
     <script>
         var inputs = function () {
-            var ins = document.getElementsByClassName("input");
-            ins.forEach(element => {
-                document.body.removeChild(element);
-            });
+            
             var op = document.getElementById("operacion").value;
             var n1 = document.createElement("input");
             n1.setAttribute("type", "number");
@@ -30,11 +27,7 @@
             }  
         };
         
-        var envio = function (){
-            var ins = document.getElementsByClassName("input");
-            ins.forEach(element => {
-                document.body.removeChild(element);
-            });
+        var envio = function (){            
             var op = document.getElementById("operacion").value;
             if(op == 1){
                 var mat = "Suma";
@@ -85,6 +78,6 @@
     <h2>Ingrese el/los numero/s</h2>
     <form id='inputs'>
     </form>
-    <button onclick="envio()">calcular </button>
+    <button onclick="envio()">calcular</button>
 </body>
 </html>
