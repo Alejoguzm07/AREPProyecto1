@@ -11,25 +11,54 @@
 <body>
     <script>
         var inputs = function () {
-            console.log("holaaaaaaaa");
-            console.log(document.getElementById("operacion").value);
-            if(("#operacion").value < 5){
-                console.log(("#operacion").value);
-                ("#inputs").append("<input id='numero1' type='number'>"
-            + "<input id='numero2' type='number'>");
-            }else{
-                ("#inputs").append("<input id='numero1' type='number'>");
-            }   
+            var op = document.getElementById("operacion").value;
+            var n1 = document.createElement("input");
+            n1.setAttribute("type", "number");
+            n1.setAttribute("id", "numero1");
+            document.body.appendChild(n1);
+            if(op < 5){
+                if(op > 0){
+                    var n2 = document.createElement("input");
+                    n2.setAttribute("type", "number");
+                    n2.setAttribute("id", "numero2");
+                    document.body.appendChild(n2);
+                }     
+            }  
         };
         
         var envio = function (){
-            if(("#operacion").value < 5){
-                ("#inputs").append("<a id='resultado' href='https://fast-bastion-75535.herokuapp.com/"
-                +fun.value+"?"+("#numero1").value+","+$("#numero2").value+"'>Resultado</a>");
-            }else{
-                ("#inputs").append("<a id='resultado' href='https://fast-bastion-75535.herokuapp.com/"
-                +fun.value+"?"+("#numero1").value+"'>Resultado</a>");
+            var op = document.getElementById("operacion").value;
+            if(op == 1){
+                var mat = "Suma";
+            }if(op == 2){
+                var mat = "Resta";
+            }if(op == 3){
+                var mat = "Multiplicacion";
+            }if(op == 4){
+                var mat = "Division";
+            }if(op == 5){
+                var mat = "Cuadrado";
+            }if(op == 6){
+                var mat = "Raiz";
             }
+            var n1 = document.getElementById("numero1").value;
+            if(op < 5){                
+                var n2 = document.getElementById("numero2").value;
+                var calc = document.createElement("input");
+                calc.setAttribute("type", "button");
+                calc.setAttribute("id", "resultado");
+                calc.setAttribute("value", "Resultado");
+                calc.setAttribute("onclick", "window.location.href="+"'https://fast-bastion-75535.herokuapp.com/apps/"
+                + mat + "?"+n1+","+n2+"'");
+            }else{
+                var calc = document.createElement("input");
+                calc.setAttribute("type", "button");
+                calc.setAttribute("id", "resultado");
+                calc.setAttribute("value", "Resultado");
+                calc.setAttribute("onclick", "window.location.href="+"'https://fast-bastion-75535.herokuapp.com/apps/"
+                + mat + "?"+n1+"'");
+            }
+            document.body.appendChild(calc);
         };
     </script>
     <header>
@@ -48,6 +77,6 @@
     <h2>Ingrese el/los numero/s</h2>
     <form id='inputs'>
     </form>
-    <input type="button" value="Calcular" onclick="envio">
+    <button onclick="envio()">calcular </button>
 </body>
 </html>
