@@ -22,3 +22,9 @@ hs_err_pid*
 target/
 # Ignora archivo .DS_Store en Mac
 .DS_Store
+# ide
+.idea
+.settings
+.project
+.classpath
+bin/
